@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    ports:
+      - "8090:80"   # Local testing; Render will auto-assign port
+    depends_on:
+      - db
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: webuser
+      MYSQL_PASSWORD: StrongPasswordHere
+      MYSQL_DATABASE: video_rental_store
+
+  db:
+    image: mariadb:10.11
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: video_rental_store
+      MYSQL_USER: webuser
+      MYSQL_PASSWORD: StrongPasswordHere
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./video_rental_store_backup.sql:/docker-entrypoint-initdb.d/video_rental_store_backup.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+
+volumes:
+  db_data:
