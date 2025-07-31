@@ -9,7 +9,7 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 RUN a2enmod rewrite
 
 # Copy application code
-COPY movies.php /var/www/html/
+COPY index.php /var/www/html/
 
 # Copy wait script
 COPY wait-for-db.sh /wait-for-db.sh
