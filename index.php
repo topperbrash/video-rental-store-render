@@ -7,7 +7,7 @@
 <h1>Video Rental Store Inventory</h1>
 
 <?php
-$servername = "db";
+$servername = "video-rental-db";
 $username = "webuser";
 $password = "NashWU2025?!"; // Replace with your password
 $dbname = "video_rental_store";
