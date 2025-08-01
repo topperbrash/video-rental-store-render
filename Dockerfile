@@ -10,6 +10,7 @@ RUN a2enmod rewrite
 
 # Copy application code
 COPY index.php /var/www/html/
+COPY video_rental_store_backup.sql /var/www/html/
 
 # Copy wait script
 COPY wait-for-db.sh /wait-for-db.sh
