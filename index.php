@@ -7,12 +7,13 @@
 <h1>Video Rental Store Inventory</h1>
 
 <?php
-$servername = "video-rental-db";
-$username = "webuser";
-$password = "NashWU2025?!"; // Replace with your password
-$dbname = "video_rental_store";
+$servername = getenv("MYSQL_HOST");
+$username   = getenv("MYSQL_USER");
+$password   = getenv("MYSQL_PASSWORD");
+$dbname     = getenv("MYSQL_DATABASE");
+$port       = getenv("MYSQL_PORT");
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname, $port);
 
 // Check connection
 if ($conn->connect_error) {
